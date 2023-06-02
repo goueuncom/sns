@@ -7,9 +7,8 @@ spring.jpa:
 
 spring.datasource:
   hikari.maxium-pool-size: 4
-  url: jdbc:postgresql://localhost:5432/postgres
-  #url: jdbc:postgresql://kgesns.cbkz9u3lll2z.ap-northeast-2.rds.amazonaws.com/kgesns
+  url: jdbc:postgresql://kgesns.cbkz9u3lll2z.ap-northeast-2.rds.amazonaws.com:5432/kgesns?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
   username: postgres
-  password: 1111
+  password: 12341234
   platform: postgres
   driver-class-name: org.postgresql.Driver
