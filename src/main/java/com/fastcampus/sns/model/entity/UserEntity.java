@@ -2,18 +2,22 @@ package com.fastcampus.sns.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.Instant;
 
-@Setter
-@Getter
 @Entity
-@Table
+@Table(name="\"user\"")
+@Getter
+@Setter
+@SQLDelete(sql = "UPDATED \"user\" SET deleted_at = NOW() where id=?")
+@Where(clause = "deleted_at is NULL")
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "user_name")
@@ -21,4 +25,26 @@ public class UserEntity {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "registered_at")
+    private Timestamp registeredAt;
+
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
+    @Column(name = "deleted_at")
+    private Timestamp deletedAt;
+
+    @PrePersist
+    void registeredAt() {
+        this.registeredAt = Timestamp.from(Instant.now());
+    }
+
+    @PrePersist
+    void updatedAt() {
+        this.updatedAt = Timestamp.from(Instant.now());
+    }
 }

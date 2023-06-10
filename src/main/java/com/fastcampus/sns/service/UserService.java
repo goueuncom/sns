@@ -17,7 +17,9 @@ public class UserService {
 
     public User join(String userName, String password) {
         // 회원가입하려는 userName으로 회원가입된 user가 있는지
-        Optional<UserEntity> userEntity = userEntityRepository.findByUserName(userName);
+        userEntityRepository.findByUserName(userName).ifPresent(it -> {
+            throw new SnsApplicationException();
+        });
 
         // 회원가입 진행 = user를 등록
         userEntityRepository.save(new UserEntity());
