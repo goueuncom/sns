@@ -6,8 +6,8 @@ spring.jpa:
   show-sql: true
 
 spring.datasource:
-  hikari.maxium-pool-size: 4
-  url: jdbc:postgresql://kgesns.cbkz9u3lll2z.ap-northeast-2.rds.amazonaws.com:5432/kgesns?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+  hikari.maximum-pool-size: 4
+  url: jdbc:postgresql://kgesns.cbkz9u3lll2z.ap-northeast-2.rds.amazonaws.com:5432/kgesns
   username: postgres
   password: 12341234
   platform: postgres

@@ -32,8 +32,8 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
 
-    @Column(name = "register_at")
-    private Timestamp registerAt;
+    @Column(name = "registered_at")
+    private Timestamp registeredAt;
 
     @Column(name = "updated_at")
     private Timestamp updatedAt;
@@ -43,7 +43,7 @@ public class UserEntity {
 
     @PrePersist
     void registeredAt() {
-        this.registerAt = Timestamp.from(Instant.now());
+        this.registeredAt = Timestamp.from(Instant.now());
     }
 
     @PreUpdate

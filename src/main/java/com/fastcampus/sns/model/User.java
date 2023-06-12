@@ -24,7 +24,7 @@ public class User {
                 entity.getUserName(),
                 entity.getPassword(),
                 entity.getRole(),
-                entity.getRegisterAt(),
+                entity.getRegisteredAt(),
                 entity.getUpdatedAt(),
                 entity.getDeletedAt()
         );
