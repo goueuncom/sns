@@ -19,9 +19,7 @@ public class PostController {
 
     @PostMapping
     public Response<Void> create(@RequestBody PostCreateRequest request, Authentication authentication) {
-        System.out.print(String.format("@PostController authentication.getName() = %s\n", authentication.getName()));
-        System.out.print(String.format("@PostController authentication.getDetails() = %s\n", authentication.getDetails()));
         postService.create(request.getTitle(), request.getBody(), authentication.getName());
-        return Response.success(null);
+        return Response.success();
     }
 }
