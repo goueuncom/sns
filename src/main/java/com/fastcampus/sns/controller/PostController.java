@@ -10,7 +10,9 @@ import com.fastcampus.sns.model.Post;
 import com.fastcampus.sns.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,11 +43,13 @@ public class PostController {
 
     @GetMapping
     public Response<Page<PostResponse>> list(Pageable pageable, Authentication authentication) {
+        pageable = PageRequest.of(0, 7, Sort.Direction.DESC, "id");
         return Response.success(postService.list(pageable).map(PostResponse::fromPost));
     }
 
     @GetMapping("/my")
     public Response<Page<PostResponse>> my(Pageable pageable, Authentication authentication) {
+        pageable = PageRequest.of(0, 7, Sort.Direction.DESC, "id");
         return Response.success(postService.my(authentication.getName(), pageable).map(PostResponse::fromPost));
     }
 
@@ -68,6 +72,7 @@ public class PostController {
 
     @GetMapping("/{postId}/comments")
     public Response<Page<CommentResponse>> commentList(@PathVariable Integer postId, Pageable pageable, Authentication authentication) {
+        pageable = PageRequest.of(0, 7, Sort.Direction.DESC, "id");
         postService.getComment(postId, pageable);
         return Response.success(postService.getComment(postId, pageable).map(CommentResponse::fromComment));
     }
