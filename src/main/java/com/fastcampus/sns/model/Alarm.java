@@ -19,7 +19,6 @@ public class Alarm {
     private Timestamp deletedAt;
 
     public static Alarm fromEntity(AlarmEntity entity) {
-        log.info("==== Call fromEntity");
         return new Alarm(
                 entity.getId(),
                 entity.getAlarmType(),
