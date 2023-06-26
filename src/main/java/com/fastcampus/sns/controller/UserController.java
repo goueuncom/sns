@@ -42,7 +42,7 @@ public class UserController {
 
     @GetMapping("/alarm")
     public Response<Page<AlarmResponse>> alarm(Pageable pageable, Authentication authentication) {
-        pageable = PageRequest.of(0, 7, Sort.Direction.DESC, "id");
+        pageable = PageRequest.of(0, 7, Sort.Direction.DESC, "registeredAt");
         User user = ClassUtils.getSafeCastInstance(authentication.getPrincipal(), User.class).orElseThrow(
                 () -> new SnsApplicationException(ErrorCode.INTERNAL_SERVER_ERROR, "Casting to User class failed"));
         return Response.success(userService.alarmList(user.getId(), pageable).map(AlarmResponse::fromAlarm));
